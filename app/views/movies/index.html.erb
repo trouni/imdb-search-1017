@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a movie"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+      <div id="movies" class="mt-5">
+        <% @movies.each do |movie| %>
+          <div class="d-flex">
+            <h4><%= movie.title %></h4>
+            (<%= link_to(movie.year, movies_path(year: movie.year)) %>)</div>
+          <p><%= movie.synopsis %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
